@@ -1,0 +1,761 @@
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+   <title>Add Graphics to a SceneView | Sample | ArcGIS API for JavaScript 4.21</title>
+
+   <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css" />
+   <script src="https://js.arcgis.com/4.21/"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <style>
+      html,
+      body,
+      #viewDiv {
+         padding: 0;
+         margin: 0;
+         height: 100%;
+         width: 100%;
+      }
+   </style>
+
+   <script>
+      require(["esri/Map",
+         "esri/views/SceneView",
+         "esri/layers/GraphicsLayer",
+         "esri/Graphic", "esri/geometry/Mesh", "esri/geometry/Point"], (
+            Map,
+            SceneView,
+            GraphicsLayer,
+            Graphic,
+            Mesh, Point
+         ) => {
+         const map = new Map({
+            basemap: "hybrid"
+         });
+
+
+         const bonus = 0.000000001;
+         const x = 106.80293220573292
+         const y = 10.870195346751164
+
+         const view = new SceneView({
+            container: "viewDiv",
+            map: map,
+
+            camera: {
+               // autocasts as new Camera()
+               position: {
+                  // autocasts as new Point()
+                  x: x,
+                  y: y - 0.001,
+                  z: 300
+               },
+               heading: 0,
+               tilt: 20
+            }
+         });
+
+         view.on("click", function (event) { // Listen for the click event
+            view.hitTest(event).then(function (hitTestResults) { // Search for features where the user clicked
+               if (hitTestResults.results) {
+                  console.log(event.mapPoint.longitude + ', ' + event.mapPoint.latitude);
+                  // console.log('{"x":"' + event.mapPoint.longitude + '", "y": "' + event.mapPoint.latitude + '},');
+                  $('#x').val(event.mapPoint.longitude);
+                  $('#y').val(event.mapPoint.latitude);
+               }
+            });
+         });
+
+         /*********************
+          * Add graphics layer
+          *********************/
+
+         const graphicsLayer = new GraphicsLayer();
+         map.add(graphicsLayer);
+
+         /*************************
+          * Add a 3D point graphic
+          *************************/
+
+         // London
+         const point = {
+            type: "point", // autocasts as new Point()
+            x: x,
+            y: y,
+            z: 1010
+         };
+
+         const markerSymbol = {
+            type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+            color: [226, 119, 40],
+            outline: {
+               // autocasts as new SimpleLineSymbol()
+               color: [255, 255, 255],
+               width: 2
+            }
+         };
+
+         const pointGraphic = new Graphic({
+            geometry: point,
+            symbol: markerSymbol
+         });
+
+         graphicsLayer.add(pointGraphic);
+
+
+         // Vẽ 2 đường thẳng từ 4 điểm từ đó có thể tìm tọa độ giao điểm
+         const val1 = {
+            x1: 106.80343454309212,
+            y1: 10.869974731945893,
+            x2: 106.80362028796124,
+            y2: 10.869919551219715,
+            k: 2
+         }
+         const polyline = {
+            type: "polyline", // autocasts as new Polyline()
+            paths: [[val1.x1, val1.y1, 0], [(val1.k + 1) * val1.x2 - val1.x1 * val1.k, (val1.k + 1) * val1.y2 - val1.y1 * val1.k, 0]]
+         };
+         const val2 = {
+            x1: 106.80424671334613,
+            y1: 10.869827004520294,
+            x2: 106.8040265398317,
+            y2: 10.86983162392971,
+            k: 2
+         }
+         // graphicsLayer.add(new Graphic({
+         //    geometry: {
+         //       type: "polyline", // autocasts as new Polyline()
+         //       paths: [[val1.x1, val1.y1, 0], [(val1.k + 1) * val1.x2 - val1.x1 * val1.k, (val1.k + 1) * val1.y2 - val1.y1 * val1.k, 0]]
+         //    },
+         //    symbol: {
+         //       type: "simple-line", // autocasts as SimpleLineSymbol()
+         //       color: [226, 119, 40],
+         //       width: 4
+         //    }
+         // }));
+         // graphicsLayer.add(new Graphic({
+         //    geometry: {
+         //       type: "polyline", // autocasts as new Polyline()
+         //       paths: [[val2.x1, val2.y1, 0], [(val2.k + 1) * val2.x2 - val2.x1 * val2.k, (val2.k + 1) * val2.y2 - val2.y1 * val2.k, 0]]
+         //    },
+         //    symbol: {
+         //       type: "simple-line", // autocasts as SimpleLineSymbol()
+         //       color: [226, 119, 40],
+         //       width: 4
+         //    }
+         // }));
+
+
+         /****************************
+          * Add a 3D polyline graphic
+          ****************************/
+
+         const drawLine = (paths, color, width) => {
+            const polyline = {
+               type: "polyline",
+               paths
+            };
+
+            const lineSymbol = {
+               type: "simple-line", // autocasts as SimpleLineSymbol()
+               color,
+               width
+            };
+
+
+            graphicsLayer.add(new Graphic({
+               geometry: polyline,
+               symbol: lineSymbol
+            }));
+         }
+
+         /***************************
+          * Add a 3D polygon graphic
+          ***************************/
+
+         const drawPolygon = (rings, bgColor, outline) => {
+            fixedRings(rings)
+            const polygon = {
+               type: "polygon",
+               rings: rings
+            };
+
+            const fillSymbol = {
+               type: "simple-fill",
+               color: bgColor,
+               outline
+            };
+
+            const polygonGraphic = new Graphic({
+               geometry: polygon,
+               symbol: fillSymbol
+            });
+
+            graphicsLayer.add(polygonGraphic);
+         }
+
+         // Đọc file json, và vẽ các dữ liệu trong file jso
+         function readTextFile(file, callback) {
+            var rawFile = new XMLHttpRequest();
+            rawFile.overrideMimeType("application/json");
+            rawFile.open("GET", file, true);
+            rawFile.onreadystatechange = function () {
+               if (rawFile.readyState === 4 && rawFile.status == "200") {
+                  callback(rawFile.responseText);
+               }
+            }
+            rawFile.send(null);
+         }
+
+         // Tìm góc
+         const findAlpha = ([xa, ya], [xi, yi], [xb, yb]) => {
+            const IA = [xa - xi, ya - yi]
+            const IB = [xb - xi, yb - yi]
+
+            const cosAlpha = (IA[0] * IB[0] + IA[1] * IB[1])
+               / (Math.sqrt(IA[0] * IA[0] + IA[1] * IA[1]) * Math.sqrt(IB[0] * IB[0] + IB[1] * IB[1]))
+
+
+            return Math.acos(cosAlpha)
+         }
+
+         // Sửa lỗi không tô được màu
+         const fixedRings = (rings) => {
+            const minVal = Math.min(...rings.map(x => x[2]))// độ cao nhỏ nhật
+            rings.map((item, i) => {
+               if (item[2] === minVal) {
+                  item[1] += bonus
+               }
+            })
+         }
+
+         // 3 điểm và 1 số cần chia ra n điểm
+         const pointsToMultipPoints = (ptA, ptI, ptB, n) => {
+            const result = []    // Danh sách các tọa đổ điểm
+            let prePt = [ptA[0], ptA[1]]
+            let alpha = -findAlpha(ptA, ptI, ptB) / n; // Tính ra góc alpha khi có 3 điểm A,B,I => Sau đó chia n
+            let a = ptI[0]
+            let b = ptI[1]
+            // Add điểm đầu tiên
+            result.push([...ptA])
+
+            for (let i = 0; i < n - 1; i++) {
+               let x = prePt[0]     // Lấy tọa độ điểm B(trước)
+               let y = prePt[1]
+
+               let xRes = 0;
+               let yRes = 0;
+
+               xRes = (x - a) * Math.cos(alpha) - (y - b) * Math.sin(alpha) + a
+               yRes = (x - a) * Math.sin(alpha) + (y - b) * Math.cos(alpha) + b
+
+               prePt[0] = xRes
+               prePt[1] = yRes
+
+               result.push([xRes, yRes])
+            }
+
+            // Add điểm cuối cùng
+            result.push([...ptB])
+
+            return result;
+         }
+
+         // Vẽ n mặt phãng tử 4 điểm
+         const drawPolygon_1 = (ptA, ptI, ptB, n, height, color, outline) => {
+            const points = pointsToMultipPoints(ptA, ptI, ptB, n)
+            for (let i = 0; i < n; i++) {
+               const point1 = points[i];
+               const point2 = points[i + 1];
+
+               const x1 = point1[0]
+               const y1 = point1[1]
+               const x2 = point2[0]
+               const y2 = point2[1]
+
+               const rings = [
+                  [x1, y1 + bonus, 0],
+                  [x1, y1, height],
+                  [x2, y2, height],
+                  [x2, y2 + bonus, 0],
+               ]     // Add 4 điểm
+
+               drawPolygon(rings, color, outline)
+            }
+         }
+
+         // Vẽ mặt cong, có minHeight, maxHeight
+         const drawPolygon_1_1 = (ptA, ptI, ptB, n, minHeight, maxHeight, color, outline) => {
+            const points = pointsToMultipPoints(ptA, ptI, ptB, n)
+            for (let i = 0; i < n; i++) {
+               const point1 = points[i];
+               const point2 = points[i + 1];
+
+               const x1 = point1[0]
+               const y1 = point1[1]
+               const x2 = point2[0]
+               const y2 = point2[1]
+
+               const rings = [
+                  [x1, y1 + bonus, minHeight],
+                  [x1, y1, maxHeight],
+                  [x2, y2, maxHeight],
+                  [x2, y2 + bonus, minHeight],
+               ]     // Add 4 điểm
+
+               drawPolygon(rings, color, outline)
+            }
+         }
+
+         // Vẽ mặt phẳng hình chữ nhật
+         const drawPolygon_2 = (rings, color, outline) => {
+            drawPolygon(rings, color, outline)
+         }
+
+         // Vẽ đường thẳng
+         const drawLine_3 = (paths, color, width) => {
+            drawLine(paths, color, width)
+         }
+
+         // Vẽ đường cong
+         const drawLine_4 = (ptA, ptI, ptB, n, color, width) => {
+            const points = pointsToMultipPoints(ptA, ptI, ptB, n)
+            let startHeight = ptA[2]
+            let endHeight = ptB[2]
+            const stepHeight = (endHeight - startHeight) / n;
+
+            points.forEach((item, i) => {
+               item[2] = startHeight + stepHeight * i
+            })
+
+            drawLine(points, color, width)
+         }
+
+         // Vẽ hình hộp
+         const drawBox_5 = (location, size, rotate, color) => {
+            let mesh = Mesh.createBox(location, {
+               size,
+               material: {
+                  color
+               }
+            });
+
+            // x từ trái sang phải
+            // y từ trên xuống dưới
+
+            mesh
+               .rotate(...rotate)
+
+            // Create a graphic and add it to the view
+            let graphic = new Graphic({
+               geometry: mesh,
+               symbol: {
+                  type: "mesh-3d",
+                  symbolLayers: [{ type: "fill" }]
+               }
+            });
+
+            view.graphics.add(graphic);
+         }
+         // Vẽ n hình hộp
+         const drawBox_5_1 = (location, minHeight, maxHeight, n, size, rotate, color) => {
+            // Chia 2 điểm thành n điểm
+            const step = (maxHeight - minHeight) / (n + 1)
+            const x = location.x
+            const y = location.y
+            const points = []
+
+            for (let i = 0; i <= n; i++) {
+               drawBox_5(new Point({ x, y, z: minHeight + step * i }), size, rotate, color)
+            }
+         }
+
+         // Vẽ bánh
+         const drawPolygon_6 = (ptA1, ptA2, ptO, ptB1, ptB2, height, n, color, outline) => {
+            const points1 = pointsToMultipPoints(ptA1, ptO, ptB1, n).reverse()    // Cung lớn
+            const points2 = pointsToMultipPoints(ptA2, ptO, ptB2, n)    // Cung nhỏ
+
+            points1.forEach((item, i) => {
+               points1[i][2] = height
+               points2[i][2] = height
+            })
+
+            const rings = [
+               [ptA1[0], ptA1[1], height],
+               [ptA2[0], ptA2[1], height],
+               ...[...points2].slice(1, n - 2),
+               [ptB2[0], ptB2[1], height],
+               [ptB1[0], ptB1[1], height],
+               ...[...points1].slice(1, n - 2)
+            ]
+
+            drawPolygon(rings, color, outline)
+         }
+
+         // Vẽ n-1 mặt thẳng dứng với rings là n Point, chiều cao từ minHeight, đến maxHeight
+         const drawPolygon_7 = (rings, minHeight, maxHeight, color, outline) => {
+
+            // Tạo n-1 multip rings từ n rings
+            const multipPoligon = []
+            for (let i = 0; i < rings.length - 1; i++) {
+               const [x1, y1] = rings[i]
+               const [x2, y2] = rings[i + 1]
+
+               multipPoligon.push([
+                  [x1, y1, minHeight],
+                  [x1, y1, maxHeight],
+                  [x2, y2, maxHeight],
+                  [x2, y2, minHeight]
+               ])
+            }
+
+            multipPoligon.forEach(rings => {
+               drawPolygon(rings, color, outline)
+            })
+         }
+
+         // Vẽ mũi người tuyết, pt, size, color
+         const drawPolygon_8 = (pt, size, color) => {
+
+            const nose = Mesh.createCylinder(pt, {
+               size,
+               material: { color }
+            });
+
+            const nosePosition = nose.vertexAttributes.position;
+
+            for (let i = 0; i < nosePosition.length / 2; i += 3) {
+               nosePosition[i + 0] = pt.x;
+               nosePosition[i + 1] = pt.y;
+            }
+            nose.vertexAttributes.normal = null;
+            nose.vertexAttributesChanged();
+
+            // nose
+            //    .rotate(-90, 0, -90)
+            //    .offset(2, 0, 8)
+            //    .rotate(0, 0, -125, { origin: pt });
+
+            view.graphics.add(new Graphic(nose, {
+               type: "mesh-3d",
+               symbolLayers: [{ type: "fill" }]
+            }));
+         }
+
+         // Vẽ cầu thang
+         const drawPolygon_9 = (ptA1, ptA2, ptO, ptB1, ptB2, minHeight, maxHeight, n, m, color, outline) => {
+
+            const offsetXA = (ptA1[0] - ptA2[0]) / m     // Mội bậc sẽ cách nhau
+            const offsetYA = (ptA1[1] - ptA2[1]) / m
+            const offsetXB = (ptB1[0] - ptB2[0]) / m
+            const offsetYB = (ptB1[1] - ptB2[1]) / m
+            const offsetHeight = (maxHeight - minHeight) / m
+
+            // Tìm ra các tọa độ của các hình
+            const pointList = []
+
+            for (let i = 0; i <= m; i++) {
+               pointList.push(
+                  [
+                     [ptA2[0] + offsetXA * i,
+                     ptA2[1] + offsetYA * i],
+                     [ptB2[0] + offsetXB * i,
+                     ptB2[1] + offsetYB * i]
+                  ]
+               )
+            }
+
+            // 3 điểm đầu chia thành 3 mặt phẳng cong - type 1
+            const ringsType1 = []
+            for (let i = 0; i < m; i++) {
+               const item = pointList[i]
+               const xa = item[0][0]
+               const ya = item[0][1]
+               const xb = item[1][0]
+               const yb = item[1][1]
+               const miH = minHeight + offsetHeight * i
+               const maH = minHeight + offsetHeight * (i + 1)
+
+               ringsType1.push({
+                  ptA: [xa, ya],
+                  ptB: [xb, yb],
+                  minHeight: miH,
+                  maxHeight: maH,
+               }
+               )
+            }
+
+            ringsType1.forEach(item => {
+               drawPolygon_1_1(item.ptA, ptO, item.ptB, n, item.minHeight, item.maxHeight, color, outline)
+            })
+
+            // 1-2, 2-3, 3-4 vẽ các bánh - type 6
+            const ringsType2 = []
+            for (let i = 0; i < m - 1; i++) {
+               const item1 = pointList[i + 1]     // Để giống với thứ tự của bánh, A1, A2, B1, B2
+               const item2 = pointList[i]
+
+               const xa1 = item1[0][0]
+               const ya1 = item1[0][1]
+
+               const xa2 = item2[0][0]
+               const ya2 = item2[0][1]
+
+               const xb1 = item1[1][0]
+               const yb1 = item1[1][1]
+
+               const xb2 = item2[1][0]
+               const yb2 = item2[1][1]
+
+               // const miH = minHeight + offsetHeight * i
+               // const maH = minHeight + offsetHeight * (i + 1)
+
+               ringsType2.push({
+                  ptA1: [xa1, ya1],
+                  ptA2: [xa2, ya2],
+                  ptB1: [xb1, yb1],
+                  ptB2: [xb2, yb2],
+                  height: (i + 1) * offsetHeight + minHeight
+               })
+
+
+            }
+
+            ringsType2.forEach(item => {
+               drawPolygon_6(item.ptA1, item.ptA2, ptO, item.ptB1, item.ptB2, item.height, n, color, outline)
+            })
+
+            // Chia ra thành n cặp tọa độ (1 mặt đúng cong, 1 bánh)
+
+            // const points1 = pointsToMultipPoints(ptA1, ptO, ptB1, n).reverse()    // Cung lớn
+            // const points2 = pointsToMultipPoints(ptA2, ptO, ptB2, n)    // Cung nhỏ
+
+            // points1.forEach((item, i) => {
+            //    points1[i][2] = height
+            //    points2[i][2] = height
+            // })
+
+            // const rings = [
+            //    [ptA1[0], ptA1[1], height],
+            //    [ptA2[0], ptA2[1], height],
+            //    ...[...points2].slice(1, n - 2),
+            //    [ptB2[0], ptB2[1], height],
+            //    [ptB1[0], ptB1[1], height],
+            //    ...[...points1].slice(1, n - 2)
+            // ]
+
+            // drawPolygon(rings, color, outline)
+         }
+
+
+         //usage:
+         const handlerText = (text) => {
+            var data = JSON.parse(text);
+
+            data.forEach(({ points, n, height, color, outline, type, rings, paths, width, location, size, rotate, minHeight, maxHeight, m }) => {
+
+               switch (type) {
+                  case 1:
+                     // 3 điểm thành n điểm của mặt phảng cong
+                     var { ptA, ptI, ptB } = points
+                     drawPolygon_1(ptA, ptI, ptB, n, height, color, outline)
+                     break;
+
+                  case 1.1:
+                     // 3 điểm thành n điểm của mặt phảng cong, có minHeight, maxHeight
+                     var { ptA, ptI, ptB } = points
+                     drawPolygon_1_1(ptA, ptI, ptB, n, minHeight, maxHeight, color, outline)
+                     break;
+
+                  case 2:
+                     // Vẽ mặt phẳng từ rings - 4 điểm
+                     // Fixed tô màu
+                     fixedRings(rings)
+                     drawPolygon_2(rings, color, outline)
+                     break;
+
+                  case 3:
+                     // Vẽ mặt phẳng từ rings - 4 điểm
+                     drawLine_3(paths, color, width)
+                     break;
+
+                  case 4:
+                     // Vẽ đường cong từ 3 điểm với n là số điểm cần phân chia
+                     var { ptA, ptI, ptB } = points
+                     drawLine_4(ptA, ptI, ptB, n, color, width)
+                     break;
+
+                  case 5:
+                     // Vẽ các box để tạo cửa sổ từ điểm trung tâm và các thông số, W, H, D, Rotate
+                     // var { ptA, ptI, ptB } = points
+                     drawBox_5(new Point({
+                        ...location
+                     }), size, rotate, color)
+                     break;
+
+                  case 5.1:
+                     // Vẽ m cửa sổ tử 2 điểm đầu cuối
+                     drawBox_5_1(location, minHeight, maxHeight, n, size, rotate, color)
+                     break;
+
+                  case 6:
+                     // Vẽ bánh
+                     var { ptA1, ptA2, ptO, ptB1, ptB2 } = points
+
+                     drawPolygon_6(ptA1, ptA2, ptO, ptB1, ptB2, height, n, color, outline)
+                     break;
+
+                  case 7:
+                     // Vẽ n-1 mặt thẳng đứng có độ cao height với rings gồm n điểm
+
+                     drawPolygon_7(rings, minHeight, maxHeight, color, outline)
+                     break;
+
+                  case 8:
+                     //
+
+                     drawPolygon_8(new Point({
+                        ...location
+                     }), size, color)
+                     break;
+
+                  case 9:
+                     // Vẽ cầu thang
+                     var { ptA1, ptA2, ptO, ptB1, ptB2 } = points
+
+                     drawPolygon_9(ptA1, ptA2, ptO, ptB1, ptB2, minHeight, maxHeight, n, m, color, outline)
+                     break;
+
+                  default:
+                     drawPolygon(rings, color, outline)
+                     break;
+               }
+            })
+         }
+
+         // const fileNames = ['dataA.json', 'data.json']
+         const fileNames = ['data.json', 'cau_Son.json']
+
+         fileNames.forEach(item => {
+            readTextFile(`./assets/${item}`, handlerText)
+         })
+
+      });
+   </script>
+</head>
+
+<body>
+   <div id="viewDiv"></div>
+</body>
+<script>
+   // require([
+   //    "esri/Map",
+   //    "esri/views/MapView", "esri/layers/GraphicsLayer", "esri/Graphic", "esri/request"
+   // ], function (Map, MapView, GraphicsLayer, Graphic, esriRequest) {
+
+   //    var map = new Map({
+   //       basemap: "topo-vector"
+   //    });
+
+   //    var view = new MapView({
+   //       container: "viewDiv",
+   //       map: map,
+   //       center: [$('#x').val(), $('#y').val()],
+   //       zoom: 16
+   //    });
+   //    var createGraphic = function (data) {
+   //       return new Graphic({
+   //          geometry: data,
+   //          symbol: data.symbol,
+   //          attributes: data,
+   //          popupTemplate: data.popupTemplate
+   //       });
+   //    };
+   //    var json_options = {
+   //       query: {
+   //          f: "json"
+   //       },
+   //       responseType: "json"
+   //    };
+   //    var renderJsonLayer = function () {
+   //       esriRequest('./api.php?dest=json&longitude='
+   //          + $('#x').val() + '&latitude='
+   //          + $('#y').val() + '&distance='
+   //          + $('#d').val() + '&angle='
+   //          + $('#a').val(), json_options).then(function (response) {
+   //             var graphicsLayer = new GraphicsLayer();
+   //             console.log(response);
+   //             response.data.forEach(function (data) {
+   //                graphicsLayer.add(createGraphic(data));
+   //             });
+   //             map.add(graphicsLayer);
+
+   //          });
+   //    };
+      // $("button#get").click(function () {
+      //    getData('./api.php?dest=coordinate&longitude='
+      //       + $('#x').val() + '&latitude='
+      //       + $('#y').val() + '&distance='
+      //       + $('#d').val() + '&angle='
+      //       + $('#a').val(),
+      //       'Cannot get new point', function (resp) {
+      //          let output = resp.toString();
+      //          if ($('#z').val() != null && $('#z').val() != '') {
+      //             output += ',' + $('#z').val();
+      //          }
+      //          $("#result").val($("#result").val() + '\n' + '[' + output + '],');
+      //       });
+      //    map.removeAll();
+      //    renderJsonLayer();
+      //    view.goTo({
+      //       center: [$('#x').val(), $('#y').val()]
+      //    })
+      //       .catch(function (error) {
+      //          if (error.name != "AbortError") {
+      //             console.error(error);
+      //          }
+      //       });
+      // });
+      // $("button#draw").click(function () {
+      //    const json_text = $('#json').val();
+      //    map.removeAll();
+      //    try {
+      //       const json = JSON.parse(json_text);
+      //       let graphicsLayer = new GraphicsLayer();
+      //       console.log(json);
+      //       graphicsLayer.add(createGraphic(json));
+      //       map.add(graphicsLayer);
+      //    } catch (err) {
+      //       alert('Cannot parse text to json!');
+      //    }
+      //    view.goTo({
+      //       center: [parseFloat($('#x').val()), parseFloat($('#y').val())]
+      //    })
+      //       .catch(function (error) {
+      //          if (error.name != "AbortError") {
+      //             console.error(error);
+      //          }
+      //       });
+      // });
+      // view.on("click", function (event) { // Listen for the click event
+      //    view.hitTest(event).then(function (hitTestResults) { // Search for features where the user clicked
+      //       if (hitTestResults.results) {
+      //          console.log('{"x":"' + event.mapPoint.longitude + '", "y": "' + event.mapPoint.latitude + '},');
+      //          $('#x').val(event.mapPoint.longitude);
+      //          $('#y').val(event.mapPoint.latitude);
+      //       }
+      //    });
+      // });
+   // });
+
+</script>
+
+</html>
+
+
+<!-- https://tuyensinh.uit.edu.vn/uit-tour-360/# -->
+<!-- https://earth.google.com/web/@10.87006492,106.80242077,27.34522157a,500d,35y,201.4254042h,0t,0r -->
+<!-- https://www.uit.edu.vn/tong-quan-ve-truong-dh-cong-nghe-thong-tin -->

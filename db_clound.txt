@@ -1,0 +1,16 @@
+server name:			gis3dserver
+resource group:			GisGroup
+
+server admin login:		gis
+pw:				SOn123456789
+
+
+
+
+    "GisConnectionString": "Data Source=127.0.0.1, 1433;Initial Catalog=gis3d;User ID=sa;Password=admin1234"
+
+
+
+"ConnectionStrings": {
+    "GisConnectionString": "Server=tcp:gis3dserver.database.windows.net,1433;Initial Catalog=Gis3D_Database;Persist Security Info=False;User ID=gis;Password=SOn123456789;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+  }

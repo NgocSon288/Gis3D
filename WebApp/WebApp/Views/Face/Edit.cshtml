@@ -1,0 +1,207 @@
+﻿
+@using WebApp.ViewModels.Faces;
+@using WebApp.ViewModels.FaceTypeOptions;
+@model FaceUpdateRequest
+
+@{
+    var faceTypeOptions = ViewBag.faceTypeOptions as List<FaceTypeOptionViewModel>;
+}
+
+
+<h1>Cập nhật Face</h1>
+<hr />
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <form asp-action="Edit">
+            <input asp-for="FaceTypeId" type="hidden" class="form-control" />
+
+            @if (ViewBag.isShow)
+            {
+                <div class="alert alert-@(ViewBag.isSuccess?"success":"danger")" role="alert">
+                    @ViewBag.message
+                </div>
+            }
+
+            <div class="form-group row">
+                <label class="control-label col-3"><strong>Chọn body</strong></label>
+                <div class="col-9">
+                    <select asp-for="BodyId" asp-items="@ViewBag.bodies" class="form-control">
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-3"><strong>Chọn mức độ chi tiết</strong></label>
+                <div class="col-9">
+                    <select asp-for="Lod" asp-items="@ViewBag.lods" class="form-control">
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="control-label col-3"><strong>Mô tả - Metadata</strong></label>
+                <div class="col-9">
+                    <input asp-for="Description" class="form-control" />
+                </div>
+            </div>
+
+            <hr />
+
+            @for (int i = 0; i < faceTypeOptions.Count; i++)
+            {
+                var item = faceTypeOptions[i];
+
+                <div class="form-group row">
+                    <label class="control-label col-3"><strong>@item.Option.Name</strong></label>
+                    <div class="col-9">
+                        <input asp-for="FaceTypeOptionValues[i].FaceTypeOptionId" type="hidden" class="form-control" />
+                        <input asp-for="FaceTypeOptionValues[i].Name" type="hidden" class="form-control" />
+                        <input asp-for="FaceTypeOptionValues[i].Id" type="hidden" class="form-control" />
+                        <input asp-for="FaceTypeOptionValues[i].Value" class="form-control" required />
+                    </div>
+                </div>
+            }
+
+
+            <div class="form-group row">
+                <label class="control-label col-3"><strong>Danh sách các điểm</strong></label>
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">X</th>
+                                <th scope="col">Y</th>
+                                <th scope="col">Z</th>
+                                <th scope="col">Modified</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-nodes" data-count="@((Model != null && Model.Nodes != null && Model.Nodes.Count > 0)?Model.Nodes.Count:1)">
+                            @if (Model != null && Model.Nodes != null && Model.Nodes.Count > 0)
+                            {
+                                for (int i = 0; i < Model.Nodes.Count; i++)
+                                {
+                                    var item = Model.Nodes[i];
+
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <input type="hidden" asp-for="@Model.Nodes[i].Id" class="form-control" />
+                                                <input required asp-for="@Model.Nodes[i].X" class="form-control node-x" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input required asp-for="@Model.Nodes[i].Y" class="form-control node-y" />
+                                        </td>
+                                        <td>
+                                            <input required asp-for="@Model.Nodes[i].Z" class="form-control node-z" />
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger btn-remove-node" type="button"><i class="fas fa-minus"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td>
+                                        <input id="Nodes_0__X" required name="Nodes[0].X" class="form-control node-x" />
+                                    </td>
+                                    <td>
+                                        <input id="Nodes_0__Y" required name="Nodes[0].Y" class="form-control node-y" />
+                                    </td>
+                                    <td>
+                                        <input id="Nodes_0__Z" required name="Nodes[0].Z" class="form-control node-z" />
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-remove-node" type="button"><i class="fas fa-minus"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <button class="btn btn-success btn-add-node" type="button">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="w-100 text-center">
+                    <input type="submit" value="Cập nhật" class="btn btn-primary w-50" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay lại danh sách</a>
+</div>
+
+<script>
+
+    const bodyNodesEle = document.getElementById('body-nodes')
+    const btnAddNodeEle = document.querySelector('.btn-add-node')
+
+    // Update name và id
+    const updateNameId = () => {
+
+        // Cập nhật lại các name và id
+        [...bodyNodesEle.children].forEach((item, i) => {
+            var xEle = item.querySelector('.node-x')
+            var yEle = item.querySelector('.node-y')
+            var zEle = item.querySelector('.node-z')
+
+            xEle.setAttribute('name', `Nodes[${i}].X`)
+            xEle.setAttribute('id', `Nodes_${i}__X`)
+
+            yEle.setAttribute('name', `Nodes[${i}].Y`)
+            yEle.setAttribute('id', `Nodes_${i}__Y`)
+
+            zEle.setAttribute('name', `Nodes[${i}].Z`)
+            zEle.setAttribute('id', `Nodes_${i}__Z`)
+        })
+    }
+
+    // Xóa
+    $('body').on('click', '.btn-remove-node', function () {
+        var count = bodyNodesEle.dataset.count;
+
+        if (count > 1) {
+            count--;
+            bodyNodesEle.dataset.count = count;
+            $(this).parents('tr').remove()
+
+            updateNameId()
+        }
+    })
+
+    // Thêm một nodes
+    btnAddNodeEle.addEventListener('click', function () {
+        var count = bodyNodesEle.dataset.count;
+        var trEle = document.createElement('tr')
+
+        count++;
+        bodyNodesEle.dataset.count = count;
+
+        trEle.innerHTML = `
+                            <td>
+                                <input required class="form-control node-x" />
+                            </td>
+                            <td>
+                                <input required class="form-control node-y" />
+                            </td>
+                            <td>
+                                <input required class="form-control node-z" />
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-remove-node" type="button"><i class="fas fa-minus"></i></button>
+                            </td>`
+
+        bodyNodesEle.appendChild(trEle);
+
+        updateNameId()
+    })
+</script>

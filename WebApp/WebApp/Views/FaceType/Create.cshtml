@@ -1,0 +1,66 @@
+﻿
+@using WebApp.ViewModels.FaceTypes;
+@using WebApp.ViewModels.Options;
+@model FaceTypeCreateRequest
+
+@{
+    var options = ViewBag.options as List<OptionViewModel>;
+}
+
+<h1>Tạo FaceType</h1>
+<hr />
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <form asp-action="Create">
+
+            @if (ViewBag.isShow)
+            {
+                <div class="alert alert-@(ViewBag.isSuccess?"success":"danger")" role="alert">
+                    @ViewBag.message
+                </div>
+            }
+
+            <div class="form-group row">
+                <label class="control-label col-3"><strong>FaceType name</strong></label>
+                <div class="col-9">
+                    <input asp-for="@Model.Name" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-3"><strong>Description</strong></label>
+                <div class="col-9">
+                    <input asp-for="@Model.Description" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-3"><strong>Options</strong></label>
+                <div class="col-9">
+                    <div class="row">
+                        @for (int i = 0; i < options.Count; i++)
+                        {
+                            <div class="col-lg-3 mb-2">
+                                <div class="d-flex justify-content-start align-items-start">
+                                    <input asp-for="FaceTypeOptions[i].IsCheckd" class="form-control mr-2" type="checkbox" style="width:30px" />
+                                    <input asp-for="FaceTypeOptions[i].OptionId" value="@options[i].Id" class="form-control mr-2" type="hidden" />
+                                    <label for="FaceTypeOptions_@(i)__OptionId" style="cursor: pointer" class="mb-0 mt-1">@options[i].Name</label>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="w-100 text-center">
+                    <input type="submit" value="Tạo mới" class="btn btn-primary w-50" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay lại danh sách</a>
+</div> 

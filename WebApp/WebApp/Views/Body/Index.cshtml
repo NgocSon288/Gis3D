@@ -1,0 +1,96 @@
+﻿@model List<WebApp.ViewModels.Bodies.BodyViewModel>
+
+<h1>Danh sách các Body</h1>
+<hr />
+<div class="row">
+    <div class="mx-auto">
+        <div>
+            <a class="btn btn-primary" asp-controller="Body" asp-action="Create">
+                Tạo
+            </a>
+        </div>
+        <table class="table caption-top mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Created by</th> 
+                    <th scope="col">Updated by</th> 
+                    <th scope="col">Modified</th>
+                </tr>
+            </thead>
+            <tbody id="body-bodies">
+                @{
+                    var count = Model.Count;
+                }
+                @for (int i = 0; i < count; i++)
+                {
+                    var item = Model[i];
+                    <tr>
+                        <th scope="row">@(i+1)</th>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td><strong>@item.CreatedBy</strong></td> 
+                        <td ><strong>@(string.IsNullOrEmpty(item.UpdatedBy)?"- - - - -": item.UpdatedBy)</strong></td> 
+                        <td>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <a class="btn btn-danger btn-delete-body" data-id="@item.Id">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                                <a class="btn btn-primary" asp-controller="Body" asp-action="Edit" asp-route-id="@item.Id">
+                                    <i class="far fa-edit"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const bodiesEle = document.getElementById('body-bodies')
+
+    const updateId = () => {
+        const trEles = bodiesEle.querySelectorAll('tr')
+
+        trEles.forEach((item, i) => {
+            var th = item.querySelector('th')
+            th.innerText = i + 1
+        })
+    }
+
+    $('body').on('click', '.btn-delete-body', function () {
+
+        const pw = window.prompt("Password?")
+
+        if (pw.toLocaleLowerCase() !== '1234567890') {
+            return
+        }
+
+        if (confirm('Bạn có chắc chắn muốn xóa body?')) {
+            if (confirm('Bạn có chắc chưa?')) {
+
+                const id = $(this).data('id')
+
+                $.ajax({
+                    url: `/Body/Delete/${id}`,
+                    success: (res) => {
+                        if (res.isSuccess) {
+                            $(this).parents('tr').remove();
+                            updateId()
+
+                            alert('Xóa thành công')
+                        }
+                    }
+                });
+
+
+            }
+        }
+    })
+
+
+</script>

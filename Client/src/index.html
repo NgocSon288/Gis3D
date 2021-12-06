@@ -1,0 +1,259 @@
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+   <title>Add Graphics to a SceneView | Sample | ArcGIS API for JavaScript 4.21</title>
+
+   <!-- Bootstrap -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+   <link rel="stylesheet" href="./assets/css/style.css">
+   <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css" />
+   <script src="https://js.arcgis.com/4.21/"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+   <style>
+      html,
+      body,
+      #viewDiv {
+         padding: 0;
+         margin: 0;
+         height: 100%;
+         width: 100%;
+      }
+   </style>
+
+   <script>
+      const baseUrl = 'https://localhost:5001'
+      const renderMap = (data) => {
+         require(["esri/Map",
+            "esri/views/SceneView",
+            "esri/layers/GraphicsLayer",
+            "esri/Graphic", "esri/geometry/Mesh", "esri/geometry/Point"], (
+               Map,
+               SceneView,
+               GraphicsLayer,
+               Graphic,
+               Mesh, Point
+            ) => {
+            const map = new Map({
+               basemap: "hybrid"
+            });
+            // streets
+
+            const x = 106.80293220573292
+            const y = 10.870195346751164
+
+            const view = new SceneView({
+               container: "viewDiv",
+               map: map,
+               camera: {
+                  position: {
+                     x: x,
+                     y: y - 0.001,
+                     z: 300
+                  },
+                  heading: 0,
+                  tilt: 20
+               }
+            });
+
+            view.on("click", function (event) {
+               view.hitTest(event).then(function (hitTestResults) {
+                  if (hitTestResults.results) {
+                     console.log(event.mapPoint.longitude + ', ' + event.mapPoint.latitude);
+                     $('#x').val(event.mapPoint.longitude);
+                     $('#y').val(event.mapPoint.latitude);
+                  }
+               });
+            });
+
+            const graphicsLayer = new GraphicsLayer();
+            map.add(graphicsLayer);
+
+            const point = {
+               type: "point",
+               x: x,
+               y: y,
+               z: 1010
+            };
+
+            const markerSymbol = {
+               type: "simple-marker",
+               color: [226, 119, 40],
+               outline: {
+                  color: [255, 255, 255],
+                  width: 2
+               }
+            };
+
+            const pointGraphic = new Graphic({
+               geometry: point,
+               symbol: markerSymbol
+            });
+
+            graphicsLayer.add(pointGraphic);
+
+            // Draw line basic
+            const drawLine = (paths, color, width) => {
+               const polyline = {
+                  type: "polyline",
+                  paths
+               };
+
+               const lineSymbol = {
+                  type: "simple-line", // autocasts as SimpleLineSymbol()
+                  color,
+                  width
+               };
+
+               graphicsLayer.add(new Graphic({
+                  geometry: polyline,
+                  symbol: lineSymbol
+               }));
+            }
+
+            // Draw Polygon basic
+            const drawPolygon = (rings, bgColor, outline) => {
+               fixedRings(rings)
+               const polygon = {
+                  type: "polygon",
+                  rings: rings
+               };
+
+               const fillSymbol = {
+                  type: "simple-fill",
+                  color: bgColor,
+                  outline
+               };
+
+               const polygonGraphic = new Graphic({
+                  geometry: polygon,
+                  symbol: fillSymbol
+               });
+
+               graphicsLayer.add(polygonGraphic);
+            }
+
+
+            // Các case 1,2,3 ... có thể thay đổi
+
+            // Routing
+            const handlerText = (data) => {
+               data.forEach((item) => {
+                  if (item.faceType) {
+                     // Switch polygon
+                     switch (item.faceType.id) {
+                        case 1:
+                           // Vẽ mặt phẳng gồm n điểm
+                           drawPolygon_1(item, drawPolygon)
+                           break;
+                        case 2:
+                           // Vẽ mặt phẳng cong
+                           drawPolygon_2(item, drawPolygon)
+                           break;
+                        case 3:
+                           // Vẽ mặt phẳng hình bánh hoàn hảo
+                           drawPolygon_3(item, drawPolygon)
+                           break;
+                        case 4:
+                           // Vẽ n - 1 mặt phẳng thẳng đứng từ n điểm kề nhau
+                           drawPolygon_4(item, drawPolygon)
+                           break;
+                        case 5:
+                           // Vẽ cầu thang m bậc
+                           drawPolygon_5(item, drawPolygon)
+                           break;
+
+                        default:
+                           break;
+                     }
+                  } else if (item.lineType) {
+
+                     // Switch line
+                     switch (item.lineType.id) {
+                        case 1:
+                           // Vẽ đường gồm n điểm
+                           drawLine_1(item, drawLine)
+                           break;
+                        case 2:
+                           // Vẽ cung tròn
+                           drawLine_2(item, drawLine)
+                           break;
+
+                        default:
+                           break;
+                     }
+                  } else if (item.pointType) {
+                     // Switch point
+                     switch (item.pointType.id) {
+                        case 1:
+                           drawPoint_1(item, { Point, view, Mesh, Graphic })
+                           break;
+                        case 2:
+                           drawPoint_2(item, { Point, view, Mesh, Graphic })
+                           break;
+                        case 3:
+                           drawPoint_3(item, { Point, view, Mesh, Graphic })
+                           break;
+
+                        default:
+                           break;
+                     }
+                  }
+               })
+            }
+
+            handlerText(data)
+
+         });
+
+      }
+
+   </script>
+   <script src="./assets/js/utilities.js"></script>
+   <script src="./assets/js/drawPolygon.js"></script>
+   <script src="./assets/js/drawLine.js"></script>
+   <script src="./assets/js/drawPoint.js"></script>
+   <script src="./assets/js/controls.js"></script>
+</head>
+
+<body>
+   <div class="jumbotron">
+      <h1 class="display-4">Hệ thống thông tin địa lý 3 chiều - IE402.M11</h1>
+      <p class="lead">Nhóm 18</p>
+      <hr class="my-4">
+   </div>
+   <div class="container pb-4">
+      <div class="controls mb-4">
+         <form class="row" id="filter-gis">
+            <div class="form-group col-6" id="list-body">
+               <label for="body"><strong class="lead lead-title">Chọn body</strong></label>
+            </div>
+            <div class="form-group col-6" id="list-lod">
+               <label for="body"><strong class="lead lead-title">Chọn mức độ chi tiết</strong></label>
+            </div>
+
+
+            <div class="text-center w-100">
+               <button type="submit" class="btn btn-primary">Refresh</button>
+            </div>
+         </form>
+      </div>
+
+      <div id="viewDiv" style="height: 600px;" class="bg-info"></div>
+   </div>
+
+</body>
+
+</html>

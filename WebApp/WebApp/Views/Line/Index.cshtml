@@ -1,0 +1,165 @@
+﻿@model List<WebApp.ViewModels.Lines.LineViewModel>
+
+@{
+    var itemPerpage = 8;                // Cho 2 item trên một page
+
+    var itemsCount = Model.Count;       // tổng số line
+    var paginCount = (itemsCount + 1) / itemPerpage;      // Số lượng pagination
+}
+
+<h1>
+    Danh sách các Line
+    <a class="btn btn-primary" asp-controller="Line" asp-action="Create">
+        New
+    </a>
+</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <div class="row">
+            <form asp-controller="Line" asp-action="Index" method="get" class="col-12" id="form-filter">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group row w-90">
+                            <select name="LineTypeId" asp-items="@ViewBag.lineTypes" class="form-control mx-2" id="line-type">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group row w-90">
+                            <select name="BodyId" asp-items="@ViewBag.bodies" class="form-control mx-2">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group row w-90">
+                            <select name="Lod" asp-items="@ViewBag.lods" class="form-control mx-2">
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="col-1">
+                        <input type="reset" class="btn btn-warning" value="Reset" id="reset-form" />
+                    </div>
+                    <div class="col-1">
+                        <input type="submit" class="btn btn-info" value="Filter" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <table class="table caption-top mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Body</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Lod</th>
+                    <th scope="col">Created by</th>
+                    <th scope="col">Updated by</th>
+                    <th scope="col">Modified</th>
+                </tr>
+            </thead>
+            <tbody id="body-line" data-itemperpage="@itemPerpage">
+                @{
+                    var count = Model.Count;
+                }
+                @for (int i = 0; i < count; i++)
+                {
+                    var item = Model[i];
+                    <tr>
+                        <th scope="row">@(i+1)</th>
+                        <td>@item.Id</td>
+                        <td>@(item.LineType.Name)</td>
+                        <td>@item.Body.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Lod</td>
+                        <td><strong>@item.CreatedBy</strong></td>
+                        <td><strong>@(string.IsNullOrEmpty(item.UpdatedBy)?"- - - - -": item.UpdatedBy)</strong></td>
+                        <td>
+                            <a class="btn btn-danger btn-delete-line" data-id="@item.Id">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                            <a class="btn btn-primary" asp-controller="Line" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="far fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @if (paginCount > 0)
+        {<div class="row text-center">
+                <nav>
+                    <ul class="pagination">
+
+                        @for (int i = 0; i < paginCount; i++)
+                        {
+                            <li class="page-item @(i==0?"active":"") pagin-line" data-page="@i"><a class="page-link" href="#">@(i+1)</a></li>
+
+                        }
+                    </ul>
+                </nav>
+            </div>}
+    </div>
+</div>
+
+<script>
+    const bodyLineEle = document.getElementById('body-line')
+    const itemPerpage = bodyLineEle.dataset.itemperpage;            // Số lượng item trên một trang
+    const trEles = bodyLineEle.querySelectorAll('tr')
+
+
+    $('body').on('click', '.btn-delete-line', function () { 
+        if (confirm('Bạn có chắc chắn muốn xóa Line ?')) {
+            if (confirm('Bạn có chắc chưa?')) {
+                const id = $(this).data('id')
+
+                $.ajax({
+                    url: `/Line/Delete/${id}`,
+                    success: (res) => {
+                        if (res.isSuccess) {
+                            document.getElementById('form-filter').submit()
+                        }
+                    }
+                });
+
+
+            }
+        }
+    })
+
+    const reset = () => {
+        trEles.forEach((item, i) => {
+            item.classList.add('d-none')
+        })
+    };
+
+    $('.pagin-line').on('click', function () {
+        loadItemPageSelected(this.dataset.page)
+    })
+
+
+    const loadItemPageSelected = (pageSelected) => {
+        const min = pageSelected * itemPerpage
+        const max = (pageSelected * 1 + 1) * itemPerpage
+
+        reset()
+
+        trEles.forEach((item, i) => {
+            if (i >= min && i < max) {
+                item.classList.remove('d-none');
+            }
+        })
+    }
+
+    loadItemPageSelected(0)
+
+    // Reste form
+    $('#reset-form').on('click', function () {
+        window.location.href = '/Line';
+    })
+</script>

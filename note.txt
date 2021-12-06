@@ -1,0 +1,4 @@
+Face, Line, Point
+	- thêm độ chi tiết 1,2,3
+
+	- Thêm BodyId?
