@@ -54,6 +54,54 @@ const pointsToMultipPoints = (ptA, ptI, ptB, n) => {
    return result;
 }
 
+// Vẽ n điểm trên từ 2 điểm
+
+const pointsToMultipPointsInLine = (ptA, ptB, n) => {
+
+   var result = []
+   
+   let prePt = [ptA[0], ptA[1]]
+   
+   console.log(prePt);
+   
+   result.push([...ptA])
+   
+   var a = (ptA[0] - ptB[0]) / n;
+   
+   var b = (ptA[1] - ptB[1]) / n;
+   
+   
+   
+   for (let i = 0; i < n; i++) {
+   
+   var xRes = prePt[0] - a;
+   
+   var yRes = prePt[1] - b;
+   
+   
+   
+   prePt[0] = xRes;
+   
+   prePt[1] = yRes;
+   
+   
+   
+   
+   
+   result.push([xRes, yRes, ptA[2]])
+   
+   }
+   
+   result.push([...ptB])
+   
+   
+   
+   console.log(result);
+   
+   return result;
+   
+   }
+
 
 // -------------- Api Reference
 // Chuyển các kiểu dữ liệu qua hệ lấy từ api, vì sql server có quan hệ
