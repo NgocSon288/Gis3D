@@ -108,45 +108,45 @@
 
          // Vẽ 2 đường thẳng từ 4 điểm từ đó có thể tìm tọa độ giao điểm
          const val1 = {
-            x1: 106.80343454309212,
-            y1: 10.869974731945893,
-            x2: 106.80362028796124,
-            y2: 10.869919551219715,
-            k: 2
+            x1: 106.80360547241096,
+            y1: 10.86998111504935,
+            x2: 106.80362857720355,
+            y2: 10.869953137704956,
+            k: 15
          }
          const polyline = {
             type: "polyline", // autocasts as new Polyline()
             paths: [[val1.x1, val1.y1, 0], [(val1.k + 1) * val1.x2 - val1.x1 * val1.k, (val1.k + 1) * val1.y2 - val1.y1 * val1.k, 0]]
          };
          const val2 = {
-            x1: 106.80424671334613,
-            y1: 10.869827004520294,
-            x2: 106.8040265398317,
-            y2: 10.86983162392971,
-            k: 2
+            x1: 106.80367071507952,
+            y1: 10.870024600548229,
+            x2: 106.80368726499624,
+            y2: 10.86999053853032,
+            k: 15
          }
-         // graphicsLayer.add(new Graphic({
-         //    geometry: {
-         //       type: "polyline", // autocasts as new Polyline()
-         //       paths: [[val1.x1, val1.y1, 0], [(val1.k + 1) * val1.x2 - val1.x1 * val1.k, (val1.k + 1) * val1.y2 - val1.y1 * val1.k, 0]]
-         //    },
-         //    symbol: {
-         //       type: "simple-line", // autocasts as SimpleLineSymbol()
-         //       color: [226, 119, 40],
-         //       width: 4
-         //    }
-         // }));
-         // graphicsLayer.add(new Graphic({
-         //    geometry: {
-         //       type: "polyline", // autocasts as new Polyline()
-         //       paths: [[val2.x1, val2.y1, 0], [(val2.k + 1) * val2.x2 - val2.x1 * val2.k, (val2.k + 1) * val2.y2 - val2.y1 * val2.k, 0]]
-         //    },
-         //    symbol: {
-         //       type: "simple-line", // autocasts as SimpleLineSymbol()
-         //       color: [226, 119, 40],
-         //       width: 4
-         //    }
-         // }));
+         graphicsLayer.add(new Graphic({
+            geometry: {
+               type: "polyline", // autocasts as new Polyline()
+               paths: [[val1.x1, val1.y1, 0], [(val1.k + 1) * val1.x2 - val1.x1 * val1.k, (val1.k + 1) * val1.y2 - val1.y1 * val1.k, 0]]
+            },
+            symbol: {
+               type: "simple-line", // autocasts as SimpleLineSymbol()
+               color: [226, 119, 40],
+               width: 4
+            }
+         }));
+         graphicsLayer.add(new Graphic({
+            geometry: {
+               type: "polyline", // autocasts as new Polyline()
+               paths: [[val2.x1, val2.y1, 0], [(val2.k + 1) * val2.x2 - val2.x1 * val2.k, (val2.k + 1) * val2.y2 - val2.y1 * val2.k, 0]]
+            },
+            symbol: {
+               type: "simple-line", // autocasts as SimpleLineSymbol()
+               color: [226, 119, 40],
+               width: 4
+            }
+         }));
 
 
          /****************************

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp.EF;
 
 namespace WebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211217005247_AddSeeding")]
+    partial class AddSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -451,18 +453,6 @@ namespace WebApp.Migrations
                             Id = 17,
                             IsNumber = true,
                             Name = "end"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            IsNumber = false,
-                            Name = "anotherColor"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            IsNumber = true,
-                            Name = "offset"
                         });
                 });
 

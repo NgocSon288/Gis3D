@@ -27,7 +27,12 @@ namespace WebApp.Extensions
               new Option() { Id = SystemConstants.OptionStatic.width, Name = nameof(SystemConstants.OptionStatic.width), IsNumber = true },
               new Option() { Id = SystemConstants.OptionStatic.outlineColor, Name = nameof(SystemConstants.OptionStatic.outlineColor), IsNumber = false },
               new Option() { Id = SystemConstants.OptionStatic.outlineWidth, Name = nameof(SystemConstants.OptionStatic.outlineWidth), IsNumber = true },
-              new Option() { Id = SystemConstants.OptionStatic.m, Name = nameof(SystemConstants.OptionStatic.m), IsNumber = true }
+              new Option() { Id = SystemConstants.OptionStatic.m, Name = nameof(SystemConstants.OptionStatic.m), IsNumber = true },
+              new Option() { Id = SystemConstants.OptionStatic.count, Name = nameof(SystemConstants.OptionStatic.count), IsNumber = true },
+              new Option() { Id = SystemConstants.OptionStatic.start, Name = nameof(SystemConstants.OptionStatic.start), IsNumber = true },
+              new Option() { Id = SystemConstants.OptionStatic.end, Name = nameof(SystemConstants.OptionStatic.end), IsNumber = true },
+              new Option() { Id = SystemConstants.OptionStatic.anotherColor, Name = nameof(SystemConstants.OptionStatic.anotherColor), IsNumber = false },
+              new Option() { Id = SystemConstants.OptionStatic.offset, Name = nameof(SystemConstants.OptionStatic.offset), IsNumber = true}
               );
         }
 

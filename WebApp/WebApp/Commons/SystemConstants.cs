@@ -24,6 +24,11 @@ namespace WebApp.Commons
             public static int outlineColor = 12;
             public static int outlineWidth = 13;
             public static int m = 14;
+            public static int count = 15;
+            public static int start = 16;
+            public static int end = 17;
+            public static int anotherColor = 18;
+            public static int offset = 19;
         }
     }
 }
