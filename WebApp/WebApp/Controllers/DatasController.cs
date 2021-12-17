@@ -35,6 +35,7 @@ namespace WebApp.Controllers
         { 
             var res = _apiService.ApiGetBodiesGis(request);
 
+
             return Ok(res);
         }
 

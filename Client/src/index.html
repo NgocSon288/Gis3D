@@ -182,31 +182,31 @@
 
                      // Switch line
                      switch (item.lineType.id) {
-                        case 11: // 1
+                        case 1: // 1
                            // Vẽ đường gồm n điểm
                            drawLine_1(item, drawLine)
                            break;
-                        case 22: // 2
+                        case 2: // 2
                            // Vẽ cung tròn
                            drawLine_2(item, drawLine)
                            break;
-                        case 111: // 3
+                        case 3: // 3
                            // Vẽ lan can
                            drawLine_3(item, drawLine)
                            break;
-                        case 3: // 5
+                        case 4: // 5
                            // Vẽ lan can thang
                            drawLine_4(item, drawLine)
                            break;
-                        case 2: // 6
+                        case 5: // 6
                            // Vẽ n lan can cong
                            drawLine_5(item, drawLine)
                            break;
-                        case 4: // 7
+                        case 6: // 7
                            // Vẽ n lan can thẳng
                            drawLine_6(item, drawLine)
                            break;
-                        case 1: // 8
+                        case 7: // 8
                            // Vẽ khung
                            drawLine_7(item, drawLine)
                            break;
@@ -216,10 +216,10 @@
                   } else if (item.pointType) {
                      // Switch point
                      switch (item.pointType.id) {
-                        case 1:
+                        case 1002:
                            drawPoint_1(item, { Point, view, Mesh, Graphic })
                            break;
-                        case 2:
+                        case 1003:
                            drawPoint_2(item, { Point, view, Mesh, Graphic })
                            break;
                         case 3:

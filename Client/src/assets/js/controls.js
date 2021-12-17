@@ -47,8 +47,8 @@ $(document).ready(() => {
          url: `${baseUrl}/datas/getBodiesGis`,
          data: data,
          success: function (data) {
+            console.log('res', data);
             const gisDataDynamic = []     // chứa danh sách tất cả các body, line, point
-
             data.result.forEach(item => {
                // Mỗi item là một body
                // Tử item lấy ra danh sách các body, line, point để vẽ

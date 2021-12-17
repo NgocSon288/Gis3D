@@ -13,7 +13,6 @@ const drawPolygon_1 = (item, render) => {
 
 // Vẽ mặt cong, có minHeight, maxHeight
 const drawPolygon_2_render = (nodes, options, render) => {
-
    const ptA = [nodes[0][0], nodes[0][1], nodes[0][2]]
    const ptI = [nodes[1][0], nodes[1][1], nodes[1][2]]
    const ptB = [nodes[2][0], nodes[2][1], nodes[2][2]]
