@@ -209,4 +209,29 @@ const drawPolygon_5 = (item, render) => {
          [item.ptA1, item.ptA2, ptO, item.ptB1, item.ptB2],
          { minHeight: item.height, n, color, outlineColor, outlineWidth }, render)
    })
+   // Vẽ n bánh hoàn hảo
+ 
 }
+const drawPolygon_6 = (item, render) => {
+   console.log(item)
+
+   const nodes = convertToNodeArray(item.nodes);
+   
+   const options = convertToOptios(item.faceTypeOptionValues);
+   
+   const { start, end, count } = options
+   const step = (end - start) / (count - 1)
+   for (let i = 0; i < count; i++) {
+   console.log( start + step * i, i, count)
+   drawPolygon_3_render(nodes, {
+   
+   ...options,
+   
+   minHeight: start + step * i
+   },
+   
+   render)
+   
+   }
+   
+   }

@@ -44,7 +44,7 @@ $(document).ready(() => {
 
       // Gọi api và reload
       $.ajax({
-         url: `${baseUrl}/datas/getBodiesGis`,
+         url: `${baseUrl}/datas/getBodiesGis2`,
          data: data,
          success: function (data) {
             console.log('res', data);
@@ -125,7 +125,7 @@ $(document).ready(() => {
       }
 
       $.ajax({
-         url: `${baseUrl}/datas/getBodiesGis`,
+         url: `${baseUrl}/datas/getBodiesGis2`,
          data: data,
          success: function (data) {
             const gisDataDynamic = []     // chứa danh sách tất cả các body, line, point

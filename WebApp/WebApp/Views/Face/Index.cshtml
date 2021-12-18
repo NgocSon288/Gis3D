@@ -1,7 +1,7 @@
 ﻿@model List<WebApp.ViewModels.Faces.FaceViewModel>
 
 @{
-    var itemPerpage = 8;                // Cho 2 item trên một page
+    var itemPerpage = 200;                // Cho 2 item trên một page
 
     var itemsCount = Model.Count;       // tổng số face
     var paginCount = (itemsCount + 1) / itemPerpage;      // Số lượng pagination
@@ -56,6 +56,8 @@
                     <th scope="col">Type</th>
                     <th scope="col">Body</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">n</th>
                     <th scope="col">Lod</th>
                     <th scope="col">Created by</th>
                     <th scope="col">Updated by</th>
@@ -75,6 +77,8 @@
                         <td>@(item.FaceType.Name)</td>
                         <td>@item.Body.Name</td>
                         <td>@item.Description</td>
+                        <td>@item.FaceTypeOptionValues.First(x=>x.Name == "color").Value</td>
+                        <td>@item.FaceTypeOptionValues.FirstOrDefault(x => x.Name == "n")?.Value</td>
                         <td>@item.Lod</td>
                         <td><strong>@item.CreatedBy</strong></td>
                         <td><strong>@(string.IsNullOrEmpty(item.UpdatedBy)?"- - - - -": item.UpdatedBy)</strong></td>

@@ -1,0 +1,1054 @@
+[{
+    "location": {
+      "x": 106.80343972954155,
+      "y": 10.869991874306812,
+      "z": 3.8
+    },
+    "minHeight": 0.5,
+    "maxHeight": 36.23,
+    "n": 9,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 71],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.8034416403109,
+      "y": 10.869997218106372,
+      "z": 3.8
+    },
+    "minHeight": 0.5,
+    "maxHeight": 36.23,
+    "n": 9,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 71],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80344358056304,
+      "y": 10.87000246748722,
+      "z": 3.8
+    },
+    "minHeight": 0.5,
+    "maxHeight": 36.23,
+    "n": 9,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 70],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80344556038641,
+      "y": 10.87000761665855,
+      "z": 3.8
+    },
+    "minHeight": 0.5,
+    "maxHeight": 36.23,
+    "n": 9,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 72],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80345688957432,
+      "y": 10.870033740269854,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 66],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80345934874013,
+      "y": 10.870038841978339,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 68],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  }, {
+    "location": {
+      "x": 106.80346184872464,
+      "y": 10.870044064370147,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 66],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80346470303104,
+      "y": 10.870049489134605,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 66],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80347848545175,
+      "y": 10.870073407716813,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 60],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80348171146893,
+      "y": 10.870078634262413,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 60],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80348500509912,
+      "y": 10.87008372546401,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 58],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.8034884115452,
+      "y": 10.870088763890474,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 58],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80351870210008,
+      "y": 10.870127837173712,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 46],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80351502949496,
+      "y": 10.870123522965669,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 50],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80351117748053,
+      "y": 10.870118873087685,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 50],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80350765070224,
+      "y": 10.87011469152437,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 36.23,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 51],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 1 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.803550248278,
+      "y": 10.870153887410638,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 40],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80355438616226,
+      "y": 10.87015762026785,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 42],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80355861351268,
+      "y": 10.8701613198987,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 40],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80356332928383,
+      "y": 10.870165285757865,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 38],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.8035820582675,
+      "y": 10.870179824461507,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 36],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.8035866302089,
+      "y": 10.870183180223124,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 36],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  }, {
+    "location": {
+      "x": 106.80359135049737,
+      "y": 10.870186346417563,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 34],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80359594906342,
+      "y": 10.870189458960448,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 34],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.8036257149763,
+      "y": 10.870207002981124,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 29],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80363055287496,
+      "y": 10.870209510985127,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 28],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80363547779395,
+      "y": 10.870211956734645,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 26],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.8036209227594,
+      "y": 10.87020451758865,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 26],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80367836608387,
+      "y": 10.870228707839566,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 18],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80367262236093,
+      "y": 10.87022683964855,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 18],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80366689460958,
+      "y": 10.870224846746483,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 18],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.8036611533122,
+      "y": 10.870222708454914,
+      "z": 3.8
+    },
+    "minHeight": 4.0729,
+    "maxHeight": 32.43,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 18],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 2 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80371268975989,
+      "y": 10.870235535910409,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 16],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80371841367267,
+      "y": 10.870237107145108,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 16],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80372409895432,
+      "y": 10.870238618482556,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 16],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80373027090361,
+      "y": 10.870240319753266,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 16],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 1 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80375571577679,
+      "y": 10.870245564468611,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 10],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80376104792836,
+      "y": 10.870246428837397,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 10],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  }, {
+    "location": {
+      "x": 106.80376654457253,
+      "y": 10.870247357394689,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 10],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80377226551077,
+      "y": 10.870248088842025,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 10],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 2 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80379948989184,
+      "y": 10.870250728394508,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 6],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80380513113766,
+      "y": 10.870251091308074,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 4],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80381085371195,
+      "y": 10.870251234322238,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 2],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80381656570576,
+      "y": 10.870251377071511,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 2],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 3 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80384517259441,
+      "y": 10.870250868164518,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, 0],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80385072248912,
+      "y": 10.870250479457264,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, -4],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80385626654284,
+      "y": 10.87025009115908,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, -4],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  },
+  {
+    "location": {
+      "x": 106.80386179175366,
+      "y": 10.870249532212103,
+      "z": 3.8
+    },
+    "minHeight": 0.000,
+    "maxHeight": 28.63,
+    "n": 8,
+    "size": {
+      "width": 0.55,
+      "height": 1.4,
+      "depth": 0.1
+    },
+    "rotate": [0, 0, -10],
+    "color": "rgba(6,73,88,0.8)",
+    "width": 0,
+    "metadata": {
+      "description": "Vẽ n hình hộp - cửa sổ 4 mặt sau khối thứ 3 tòa B"
+    },
+    "type": 5.1
+  }
+]

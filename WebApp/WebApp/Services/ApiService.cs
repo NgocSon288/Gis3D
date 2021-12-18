@@ -327,6 +327,264 @@ namespace WebApp.Services
         {
             return Enum.GetValues(typeof(LOD)).Cast<LOD>().ToList();
         }
+        public async Task<List<BodyViewModel>> ApiGetBodiesGis2(BodyRequest request)
+        {
+            try
+            {
+                // FaceTypeOptions
+                var faceTypeOptions = await _context.FaceTypeOptions
+                .Include(x => x.Option)
+                .ToListAsync();
+                var faceTypeOptionDictionary = faceTypeOptions.ToDictionary(x => x.Id, x => new
+                {
+                    IsNumber = x.Option.IsNumber,
+                    Name = x.Option.Name
+                });
+
+
+
+
+                // LineTypeOptions
+                var lineTypeOptions = await _context.LineTypeOptions
+                .Include(x => x.Option)
+                .ToListAsync();
+                var lineTypeOptionDictionary = lineTypeOptions.ToDictionary(x => x.Id, x => new
+                {
+                    IsNumber = x.Option.IsNumber,
+                    Name = x.Option.Name
+                });
+
+
+
+
+                // PointTypeOptions
+                var pointTypeOptions = await _context.PointTypeOptions
+                .Include(x => x.Option)
+                .ToListAsync();
+                var pointTypeOptionDictionary = pointTypeOptions.ToDictionary(x => x.Id, x => new
+                {
+                    IsNumber = x.Option.IsNumber,
+                    Name = x.Option.Name
+                });
+
+                for (int i = 0; i < request.BodyId.Count; i++)
+                {
+                    Console.WriteLine(request.BodyId[i]);
+                }
+
+
+
+                List<BodyViewModel> bodies = new List<BodyViewModel>();
+
+                for (int i = 0; i < request.BodyId.Count; i++)
+                {
+                    var bodyId = request.BodyId[i];
+                    // Tìm faces
+                    var faces = await _context.Faces
+                    .Include(x => x.Nodes)
+                    .Include(x => x.FaceTypeOptionValues)
+                    .Where(x => x.BodyId == bodyId && x.Lod <= request.Lod) 
+                    .ToListAsync();
+
+
+
+                    // Tìm Lines
+                    var lines = await _context.Lines
+                    .Include(x => x.Nodes)
+                    .Include(x => x.LineTypeOptionValues)
+                    .Where(x => x.BodyId == bodyId && x.Lod <= request.Lod )
+                    .ToListAsync();
+
+
+
+                    // Tìn Point
+                    var points = await _context.Points
+                    .Include(x => x.Node)
+                    .Include(x => x.PointTypeOptionValues)
+                    .Where(x => x.BodyId == bodyId && x.Lod <= request.Lod )
+                    .ToListAsync();
+
+
+
+                    bodies.Add(new BodyViewModel()
+                    {
+                        Id = bodyId,
+                        Faces = faces.Select(f => new FaceViewModel()
+                        {
+                            Nodes = f.Nodes.Select(n => new NodeViewModel()
+                            {
+                                Id = n.Id,
+                                X = n.X,
+                                Y = n.Y,
+                                Z = n.Z
+                            }).ToList(),
+                            FaceTypeOptionValues = f.FaceTypeOptionValues.Select(ftov => new FaceTypeOptionValueViewModel()
+                            {
+                                Name = faceTypeOptionDictionary[ftov.FaceTypeOptionId].Name,
+                                Value = faceTypeOptionDictionary[ftov.FaceTypeOptionId].IsNumber ? ftov.ValueN : ftov.ValueS
+                            }).ToList(),
+                            FaceTypeId = f.FaceTypeId,
+                            FaceType = new FaceTypeViewModel()
+                            {
+                                Id = f.FaceTypeId
+                            }
+                        }).ToList(),
+                        Lines = lines.Select(l => new LineViewModel()
+                        {
+                            Nodes = l.Nodes.Select(n => new NodeViewModel()
+                            {
+                                Id = n.Id,
+                                X = n.X,
+                                Y = n.Y,
+                                Z = n.Z
+                            }).ToList(),
+                            LineTypeOptionValues = l.LineTypeOptionValues.Select(ftov => new LineTypeOptionValueViewModel()
+                            {
+                                Name = lineTypeOptionDictionary[ftov.LineTypeOptionId].Name,
+                                Value = lineTypeOptionDictionary[ftov.LineTypeOptionId].IsNumber ? ftov.ValueN : ftov.ValueS
+                            }).ToList(),
+                            LineTypeId = l.LineTypeId,
+                            LineType = new LineTypeViewModel()
+                            {
+                                Id = l.LineTypeId
+                            }
+                        }).ToList(),
+                        Points = points.Select(p => new PointViewModel()
+                        {
+                            Node = new NodeViewModel()
+                            {
+                                Id = p.Node.Id,
+                                X = p.Node.X,
+                                Y = p.Node.Y,
+                                Z = p.Node.Z
+                            },
+                            PointTypeOptionValues = p.PointTypeOptionValues.Select(ftov => new PointTypeOptionValueViewModel()
+                            {
+                                Name = pointTypeOptionDictionary[ftov.PointTypeOptionId].Name,
+                                Value = pointTypeOptionDictionary[ftov.PointTypeOptionId].IsNumber ? ftov.ValueN : ftov.ValueS
+                            }).ToList(),
+                            PointTypeId = p.PointTypeId,
+                            PointType = new PointTypeViewModel()
+                            {
+                                Id = p.PointTypeId
+                            }
+                        }).ToList()
+                    });
+                }
+
+
+
+                if (request.BodyId.Contains(0))
+                {
+                    var bodyId = 0;
+                    // Tìm faces
+                    var faces = await _context.Faces
+                    .Include(x => x.Nodes)
+                    .Include(x => x.FaceTypeOptionValues)
+                    .Where(x => x.BodyId == null && x.Lod <= request.Lod)
+                    .ToListAsync();
+
+
+
+                    // Tìm Lines
+                    var lines = await _context.Lines
+                    .Include(x => x.Nodes)
+                    .Include(x => x.LineTypeOptionValues)
+                    .Where(x => x.BodyId == null && x.Lod <= request.Lod )
+                    .ToListAsync();
+
+
+
+                    // Tìn Point
+                    var points = await _context.Points
+                    .Include(x => x.Node)
+                    .Include(x => x.PointTypeOptionValues)
+                    .Where(x => x.BodyId == null && x.Lod <= request.Lod )
+                    .ToListAsync();
+
+
+
+                    bodies.Add(new BodyViewModel()
+                    {
+                        Id = bodyId,
+                        Faces = faces.Select(f => new FaceViewModel()
+                        {
+                            Nodes = f.Nodes.Select(n => new NodeViewModel()
+                            {
+                                Id = n.Id,
+                                X = n.X,
+                                Y = n.Y,
+                                Z = n.Z
+                            }).ToList(),
+                            FaceTypeOptionValues = f.FaceTypeOptionValues.Select(ftov => new FaceTypeOptionValueViewModel()
+                            {
+                                Name = faceTypeOptionDictionary[ftov.FaceTypeOptionId].Name,
+                                Value = faceTypeOptionDictionary[ftov.FaceTypeOptionId].IsNumber ? ftov.ValueN : ftov.ValueS
+                            }).ToList(),
+                            FaceTypeId = f.FaceTypeId,
+                            FaceType = new FaceTypeViewModel()
+                            {
+                                Id = f.FaceTypeId
+                            }
+                        }).ToList(),
+                        Lines = lines.Select(l => new LineViewModel()
+                        {
+                            Nodes = l.Nodes.Select(n => new NodeViewModel()
+                            {
+                                Id = n.Id,
+                                X = n.X,
+                                Y = n.Y,
+                                Z = n.Z
+                            }).ToList(),
+                            LineTypeOptionValues = l.LineTypeOptionValues.Select(ftov => new LineTypeOptionValueViewModel()
+                            {
+                                Name = lineTypeOptionDictionary[ftov.LineTypeOptionId].Name,
+                                Value = lineTypeOptionDictionary[ftov.LineTypeOptionId].IsNumber ? ftov.ValueN : ftov.ValueS
+                            }).ToList(),
+                            LineTypeId = l.LineTypeId,
+                            LineType = new LineTypeViewModel()
+                            {
+                                Id = l.LineTypeId
+                            }
+                        }).ToList(),
+                        Points = points.Select(p => new PointViewModel()
+                        {
+                            Node = new NodeViewModel()
+                            {
+                                Id = p.Node.Id,
+                                X = p.Node.X,
+                                Y = p.Node.Y,
+                                Z = p.Node.Z
+                            },
+                            PointTypeOptionValues = p.PointTypeOptionValues.Select(ftov => new PointTypeOptionValueViewModel()
+                            {
+                                Name = pointTypeOptionDictionary[ftov.PointTypeOptionId].Name,
+                                Value = pointTypeOptionDictionary[ftov.PointTypeOptionId].IsNumber ? ftov.ValueN : ftov.ValueS
+                            }).ToList(),
+                            PointTypeId = p.PointTypeId,
+                            PointType = new PointTypeViewModel()
+                            {
+                                Id = p.PointTypeId
+                            }
+                        }).ToList()
+                    });
+                }
+
+
+
+
+                return bodies;
+
+
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
 
     }
 }

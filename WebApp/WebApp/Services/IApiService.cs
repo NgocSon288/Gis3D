@@ -10,5 +10,8 @@ namespace WebApp.Services
         Task<List<BodyViewModel>> ApiGetBodies(); 
         Task<List<BodyViewModel>> ApiGetBodiesGis(BodyRequest request);
         List<LOD> ApiGetLods();
+        Task<List<BodyViewModel>> ApiGetBodiesGis2(BodyRequest request);
+
+
     }
 }
