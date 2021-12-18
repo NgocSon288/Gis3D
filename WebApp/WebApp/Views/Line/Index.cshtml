@@ -1,7 +1,7 @@
 ﻿@model List<WebApp.ViewModels.Lines.LineViewModel>
 
 @{
-    var itemPerpage = 8;                // Cho 2 item trên một page
+    var itemPerpage = 100;                // Cho 2 item trên một page
 
     var itemsCount = Model.Count;       // tổng số line
     var paginCount = (itemsCount + 1) / itemPerpage;      // Số lượng pagination

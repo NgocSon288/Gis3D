@@ -39,6 +39,15 @@ namespace WebApp.Controllers
             return Ok(res);
         }
 
+        [HttpPost]
+        public IActionResult GetBodiesGis2([FromForm] BodyRequest request)
+        {
+            var res = _apiService.ApiGetBodiesGis2(request);
+
+
+            return Ok(res);
+        }
+
         [HttpGet]
         public IActionResult GetLods()
         {
