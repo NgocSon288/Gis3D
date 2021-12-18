@@ -49,19 +49,21 @@ $(document).ready(() => {
          success: function (data) {
             console.log('res', data);
             const gisDataDynamic = []     // chứa danh sách tất cả các body, line, point
-            data.result.forEach(item => {
-               // Mỗi item là một body
-               // Tử item lấy ra danh sách các body, line, point để vẽ
+            if (data && data.result) {
+               data.result.forEach(item => {
+                  // Mỗi item là một body
+                  // Tử item lấy ra danh sách các body, line, point để vẽ
 
-               if (item.faces)
-                  gisDataDynamic.push(...item.faces)
+                  if (item.faces)
+                     gisDataDynamic.push(...item.faces)
 
-               if (item.lines)
-                  gisDataDynamic.push(...item.lines)
+                  if (item.lines)
+                     gisDataDynamic.push(...item.lines)
 
-               if (item.points)
-                  gisDataDynamic.push(...item.points)
-            })
+                  if (item.points)
+                     gisDataDynamic.push(...item.points)
+               })
+            }
             renderMap(gisDataDynamic)
 
          },

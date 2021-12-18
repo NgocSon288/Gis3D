@@ -1,7 +1,7 @@
 ﻿@model List<WebApp.ViewModels.Faces.FaceViewModel>
 
 @{
-    var itemPerpage = 200;                // Cho 2 item trên một page
+    var itemPerpage = 10;                // Cho 2 item trên một page
 
     var itemsCount = Model.Count;       // tổng số face
     var paginCount = (itemsCount + 1) / itemPerpage;      // Số lượng pagination

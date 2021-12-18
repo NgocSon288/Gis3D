@@ -27,16 +27,21 @@ using WebApp.ViewModels.Bodies;namespace WebApp.Controllers
             var res = _apiService.ApiGetBodiesGis(request);
             return Ok(res);
         }
+
         [HttpPost]
         public IActionResult GetBodiesGis2([FromForm] BodyRequest request)
         {
             var res = _apiService.ApiGetBodiesGis2(request);
+
+
             return Ok(res);
         }
+
         [HttpGet]
         public IActionResult GetLods()
         {
-            var res = _apiService.ApiGetLods(); return Ok(res);
+            var res = _apiService.ApiGetLods(); 
+            return Ok(res);
         }
         #endregion [HttpGet]
         public async Task<IActionResult> GetAll()
